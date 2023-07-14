@@ -33,9 +33,6 @@ public class PlayerScript : MonoBehaviour
         //カメラの向きに合わせてプレイヤーを回転させる
         Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
         transform.rotation = Quaternion.LookRotation(cameraForward);
-        
-        //接地判定
-        //isGrounded = CheckGrounded();
 
         if (isGrounded)
         {
@@ -114,6 +111,7 @@ public class PlayerScript : MonoBehaviour
     //コライダーと触れた瞬間に
     void OnCollisionStay(Collision collision)
     {
+        //下方向のみに接地判定を付与
         isGrounded = Vector3.Dot((collision.contacts[0].point - transform.position).normalized, Vector3.down) > Mathf.Cos(0.5f);
         
         Debug.Log(collision.gameObject.tag);
@@ -139,6 +137,7 @@ public class PlayerScript : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
+        //接地判定を強制的にfalseにする
         isGrounded = false;
     }
 

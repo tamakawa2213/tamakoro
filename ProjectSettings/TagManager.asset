@@ -6,6 +6,9 @@ TagManager:
   tags:
   - MoveFloor
   - Goal
+  - CheckPointFloor
+  - CheckPointFloor1
+  - CheckPointFloor2
   layers:
   - Default
   - TransparentFX

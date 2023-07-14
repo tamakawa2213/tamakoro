@@ -125,7 +125,17 @@ public class PlayerScript : MonoBehaviour
             //êeÇ…ê›íË
             this.gameObject.transform.parent = beforeParent;
         }
-        
+
+        if (collision.gameObject.CompareTag("CheckPointFloor1"))
+        {
+            Debug.Log("1");
+            startPos = new Vector3(-8, -3, 32);
+        }
+        if (collision.gameObject.CompareTag("CheckPointFloor2"))
+        {
+            Debug.Log("2");
+            startPos = new Vector3(20, -3, 70);
+        }
     }
 
     private void FixedUpdate()

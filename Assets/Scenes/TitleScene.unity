@@ -706,7 +706,6 @@ GameObject:
   - component: {fileID: 1682815483}
   - component: {fileID: 1682815482}
   - component: {fileID: 1682815481}
-  - component: {fileID: 1682815485}
   - component: {fileID: 1682815484}
   m_Layer: 5
   m_Name: RuleButton
@@ -780,7 +779,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1682815484}
-        m_TargetAssemblyTypeName: Rule, Assembly-CSharp
+        m_TargetAssemblyTypeName: RuleButton, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -838,18 +837,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1682815479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dcc54d22eed2ca4ab9837f019d8fed1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1682815485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682815479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef6b1159712072a4b925e1fe8fb64a9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c19429d4effeda47a5ec322c3c2ed7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

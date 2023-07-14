@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GoalScene.unity
     guid: 885a890c2fc96814ebf70173923ad6eb
+  - enabled: 1
+    path: Assets/Scenes/Rule.unity
+    guid: b54acb939cf3c9741b0002f7489fb437
   m_configObjects: {}

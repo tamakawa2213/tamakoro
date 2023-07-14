@@ -102,7 +102,7 @@ public class PlayerScript : MonoBehaviour
     void OnCollisionStay(Collision collision)
     {
         //‰º•ûŒü‚Ì‚Ý‚ÉÚ’n”»’è‚ð•t—^
-        if(Vector3.Dot((collision.contacts[0].point - transform.position).normalized, Vector3.down) > Mathf.Cos(0.5f))
+        if(Vector3.Dot((collision.contacts[0].point - transform.position).normalized, Vector3.down) > Mathf.Cos(1))
         {
             isGrounded = true;
         }

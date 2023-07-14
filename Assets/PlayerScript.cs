@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -34,7 +35,7 @@ public class PlayerScript : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(cameraForward);
         
         //接地判定
-        isGrounded = CheckGrounded();
+        //isGrounded = CheckGrounded();
 
         if (isGrounded)
         {
@@ -113,9 +114,9 @@ public class PlayerScript : MonoBehaviour
     //コライダーと触れた瞬間に
     void OnCollisionStay(Collision collision)
     {
-       
+        isGrounded = Vector3.Dot((collision.contacts[0].point - transform.position).normalized, Vector3.down) > Mathf.Cos(0.5f);
+        
         Debug.Log(collision.gameObject.tag);
-
         if (collision.gameObject.CompareTag("MoveFloor"))
         {
             Debug.Log("aaaaaaa");
@@ -136,6 +137,10 @@ public class PlayerScript : MonoBehaviour
         
     }
 
+    void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false;
+    }
 
 }
 

@@ -34,6 +34,8 @@ public class PlayerScript : MonoBehaviour
         Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
         transform.rotation = Quaternion.LookRotation(cameraForward);
 
+        CheckGrounded();
+
         if (isGrounded)
         {
             //移動
@@ -96,6 +98,17 @@ public class PlayerScript : MonoBehaviour
 
         transform.Rotate(Vector3.up, mouseX * rotationSpeed, Space.World);
 
+    }
+
+    void CheckGrounded()
+    {
+        //放つ光線の初期位置と姿勢
+        var ray = new Ray(transform.position + Vector3.up * 0.1f, Vector3.down);
+        //光線の距離(今回カプセルオブジェクトに設定するのでHeight/2 + 0.1以上を設定)
+        var distance = 1.0f;
+        //Raycastがhitするかどうかで判定レイヤーを指定することも可能
+        if(Physics.Raycast(ray, distance))
+            isGrounded = true;
     }
 
     //コライダーと触れた瞬間に

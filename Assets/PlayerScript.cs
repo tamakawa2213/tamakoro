@@ -102,7 +102,10 @@ public class PlayerScript : MonoBehaviour
     void OnCollisionStay(Collision collision)
     {
         //下方向のみに接地判定を付与
-        isGrounded = Vector3.Dot((collision.contacts[0].point - transform.position).normalized, Vector3.down) > Mathf.Cos(0.5f);
+        if(Vector3.Dot((collision.contacts[0].point - transform.position).normalized, Vector3.down) > Mathf.Cos(0.5f))
+        {
+            isGrounded = true;
+        }
         
         Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("MoveFloor"))
@@ -125,11 +128,10 @@ public class PlayerScript : MonoBehaviour
         
     }
 
-    void OnCollisionExit(Collision collision)
+    private void FixedUpdate()
     {
         //接地判定を強制的にfalseにする
         isGrounded = false;
     }
-
 }
 

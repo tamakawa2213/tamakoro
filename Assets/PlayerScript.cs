@@ -34,38 +34,40 @@ public class PlayerScript : MonoBehaviour
         Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
         transform.rotation = Quaternion.LookRotation(cameraForward);
 
+        //稀にコリジョンが正しく機能しないことがあるのでレイキャストで再審
         CheckGrounded();
 
         if (isGrounded)
         {
             //移動
-            // Wキー（前方移動）
-            if (Input.GetKey(KeyCode.W))
+            //横移動の最高速度以下ならば操作を受け付ける
+            if (rb.velocity.magnitude < SPEED_MAX)
             {
-                if (rb.velocity.magnitude < SPEED_MAX)
+                // Wキー（前方移動）
+                if (Input.GetKey(KeyCode.W))
+                {
                     rb.AddForce(transform.TransformDirection(new Vector3(0, 0, speed)));
-            }
+                }
 
-            // Sキー（後方移動）
-            if (Input.GetKey(KeyCode.S))
-            {
-                if (rb.velocity.magnitude < SPEED_MAX)
+                // Sキー（後方移動）
+                if (Input.GetKey(KeyCode.S))
+                {
                     rb.AddForce(transform.TransformDirection(new Vector3(0, 0, -speed)));
-            }
+                }
 
-            // Dキー（右移動）
-            if (Input.GetKey(KeyCode.D))
-            {
-                if (rb.velocity.magnitude < SPEED_MAX)
+                // Dキー（右移動）
+                if (Input.GetKey(KeyCode.D))
+                {
                     rb.AddForce(transform.TransformDirection(new Vector3(speed, 0, 0)));
-            }
+                }
 
-            // Aキー（左移動）
-            if (Input.GetKey(KeyCode.A))
-            {
-                if (rb.velocity.magnitude < SPEED_MAX)
+                // Aキー（左移動）
+                if (Input.GetKey(KeyCode.A))
+                {
                     rb.AddForce(transform.TransformDirection(new Vector3(-speed, 0, 0)));
+                }
             }
+             
             //スペースキーをタップした際の動作
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -102,6 +104,10 @@ public class PlayerScript : MonoBehaviour
 
     void CheckGrounded()
     {
+        //既にtrueならそのまま返す
+        if (isGrounded)
+            return;
+        
         //放つ光線の初期位置と姿勢
         var ray = new Ray(transform.position + Vector3.up * 0.1f, Vector3.down);
         //光線の距離(今回カプセルオブジェクトに設定するのでHeight/2 + 0.1以上を設定)

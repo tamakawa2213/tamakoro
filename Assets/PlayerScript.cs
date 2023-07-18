@@ -137,7 +137,7 @@ public class PlayerScript : MonoBehaviour
         {
             //e‚Éİ’è
             this.gameObject.transform.parent = beforeParent;
-            SceneManager.LoadScene("GoalScene");
+            SceneManager.LoadScene("Result");
         }
         else
         {

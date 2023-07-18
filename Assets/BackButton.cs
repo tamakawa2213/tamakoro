@@ -23,4 +23,10 @@ public class BackButton : MonoBehaviour
         Debug.Log("押された!");  // ログを出力
         SceneManager.LoadScene("TitleScene");
     }
+
+    public void OnClick1()
+    {
+        Debug.Log("押された!");  // ログを出力
+        SceneManager.LoadScene("SampleScene");
+    }
 }

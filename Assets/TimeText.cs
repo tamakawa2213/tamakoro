@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,13 +13,15 @@ public class TimeText : MonoBehaviour
     //　前のUpdateの時の秒数
     private float oldSeconds;
     //　タイマー表示用テキスト
-    public Text timerText;
+    private TextMeshProUGUI timerText;
+    public GameObject obj;
 
     void Start()
     {
         minute = 0;
         seconds = 0f;
         oldSeconds = 0f;
+        timerText = obj.GetComponent<TextMeshProUGUI>();
     }
 
     void Update()

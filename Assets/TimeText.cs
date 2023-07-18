@@ -36,6 +36,8 @@ public class TimeText : MonoBehaviour
         if ((int)seconds != (int)oldSeconds)
         {
             timerText.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
+            Global.minute = minute;
+            Global.seconds = ((int)seconds);
         }
         oldSeconds = seconds;
     }

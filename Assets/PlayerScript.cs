@@ -124,7 +124,7 @@ public class PlayerScript : MonoBehaviour
         //放つ光線の初期位置と姿勢
         var ray = new Ray(transform.position + Vector3.up * 0.1f, Vector3.down);
         //光線の距離(今回カプセルオブジェクトに設定するのでHeight/2 + 0.1以上を設定)
-        var distance = 0.6f;
+        var distance = 0.7f;
         //Raycastがhitするかどうかで判定レイヤーを指定することも可能
         if(Physics.Raycast(ray, distance))
             isGrounded = true;

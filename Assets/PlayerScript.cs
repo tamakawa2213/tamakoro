@@ -19,7 +19,8 @@ public class PlayerScript : MonoBehaviour
     public Vector3 startPos;
 
     private Rigidbody rb;
-    private bool isGrounded; 
+    private bool isGrounded;
+    private int PrecedeJump_;   //ジャンプの先行入力
 
     void Start()
     {
@@ -36,6 +37,12 @@ public class PlayerScript : MonoBehaviour
 
         //稀にコリジョンが正しく機能しないことがあるのでレイキャストで再審
         CheckGrounded();
+
+        //ジャンプの先行入力
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PrecedeJump_ = 50;
+        }
 
         if (isGrounded)
         {
@@ -68,11 +75,15 @@ public class PlayerScript : MonoBehaviour
                 }
             }
              
-            //スペースキーをタップした際の動作
-            if (Input.GetKeyDown(KeyCode.Space))
+            //先行入力値が1以上でジャンプ
+            if (PrecedeJump_ > 0)
             {
                 isGrounded = false;
-                rb.AddForce(Vector3.up * jumpPower);
+                Vector3 vec = rb.velocity;
+                vec.y = jumpPower;
+                rb.velocity = new Vector3(vec.x, 0, vec.z);
+                rb.AddForce(vec);
+                PrecedeJump_ = 0;
             }
         }
         
@@ -90,6 +101,8 @@ public class PlayerScript : MonoBehaviour
             //親を初期化
             this.gameObject.transform.parent = beforeParent;
         }
+
+        PrecedeJump_--;
     }
 
     //回転
@@ -111,7 +124,7 @@ public class PlayerScript : MonoBehaviour
         //放つ光線の初期位置と姿勢
         var ray = new Ray(transform.position + Vector3.up * 0.1f, Vector3.down);
         //光線の距離(今回カプセルオブジェクトに設定するのでHeight/2 + 0.1以上を設定)
-        var distance = 1.0f;
+        var distance = 0.6f;
         //Raycastがhitするかどうかで判定レイヤーを指定することも可能
         if(Physics.Raycast(ray, distance))
             isGrounded = true;

@@ -5,22 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class Startabutton : MonoBehaviour
 {
+    public AudioClip sound;
+    AudioSource audioSource;
+    bool isChange = false;
+    int stay = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("押された!");  // ログを出力
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (isChange == true)
+        {
+            stay++;
+            if (stay > 150)
+            {
+                SceneManager.LoadScene("SampleScene");
+            }
+        }
     }
 
     // ボタンが押された場合、今回呼び出される関数
     public void OnClick()
     {
         Debug.Log("押された!");  // ログを出力
-        SceneManager.LoadScene("SampleScene");
+        audioSource.PlayOneShot(sound);
+        isChange = true;
     }
 }

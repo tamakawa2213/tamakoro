@@ -5,16 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class RuleButton : MonoBehaviour
 {
+    public AudioClip sound;
+    AudioSource audioSource;
+    bool isChange = false;
+    int stay = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (isChange == true)
+        {
+            stay++;
+            if(stay > 150)
+            {
+                SceneManager.LoadScene("Rule");
+            }
+        }
     }
 
 
@@ -22,6 +34,9 @@ public class RuleButton : MonoBehaviour
     public void OnClick()
     {
         Debug.Log("âüÇ≥ÇÍÇΩ!");  // ÉçÉOÇèoóÕ
-        SceneManager.LoadScene("Rule");
+        audioSource.PlayOneShot(sound);
+        isChange = true;
     }
+
+    
 }

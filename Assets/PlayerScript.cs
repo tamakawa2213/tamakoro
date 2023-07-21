@@ -9,6 +9,10 @@ using UnityEngine.SceneManagement;
 public class PlayerScript : MonoBehaviour
 {
     //êÈåæ
+    public AudioClip sound;
+    AudioSource audioSource;
+    bool isCheck1 = false;
+    bool isCheck2 = false;
 
     public float jumpPower = 240f;
     public float speed;          //ë¨Ç≥
@@ -27,6 +31,7 @@ public class PlayerScript : MonoBehaviour
         beforeParent = transform.parent;
         startPos = this.transform.position;
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -162,11 +167,21 @@ public class PlayerScript : MonoBehaviour
         {
             Debug.Log("1");
             startPos = new Vector3(-8, -3, 32);
+            if (isCheck1 == false)
+            { 
+                isCheck1 = true;
+                audioSource.PlayOneShot(sound);
+            }
         }
         if (collision.gameObject.CompareTag("CheckPointFloor2"))
         {
             Debug.Log("2");
             startPos = new Vector3(20, -3, 70);
+            if (isCheck2 == false)
+            {
+                isCheck2 = true;
+                audioSource.PlayOneShot(sound);
+            }
         }
     }
 
